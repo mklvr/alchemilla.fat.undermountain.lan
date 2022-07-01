@@ -1,0 +1,14 @@
+# Install Ansible Roles
+# ---------------------
+# When making the Conductor image `ansible-galaxy install -r requirements.yml` is executed
+# using this file. Follow the instructions at http://docs.ansible.com/ansible/galaxy.html
+# to include any roles you want installed prior to running main.yml.
+roles:
+  - name: ansible-role-shorewall
+    src: git@github.com:mklvr/ansible-role-shorewall.git
+    scm: git
+    version: master
+  - name: ansible-role-dhcpd
+    src: git@github.com:mklvr/ansible-role-dhcpd.git
+    scm: git
+    version: master

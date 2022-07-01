@@ -1,0 +1,5 @@
+routers:
+  hosts:
+    alchemilla.fat.undermountain.lan:
+      ansible_host: "{{ loc_address | ansible.netcommon.ipaddr('address') }}"
+      ansible_user: "{{ lookup('env', 'LOGNAME') }}"

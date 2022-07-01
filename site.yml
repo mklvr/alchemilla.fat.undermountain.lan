@@ -1,0 +1,29 @@
+---
+- hosts: alchemilla.fat.mklvr.io
+  become: True
+  vars:
+    net_if: enp1s0
+    loc_if: enx782d7e111090
+    loc_address: 10.101.10.1/24
+    loc_net: 10.101.10.0
+    loc_netmask: 255.255.255.0
+    loc_cidr: 10.101.10.0/24
+    loc_gateway: 10.101.10.1
+    loc_domain: undermountain.lan
+    loc_range_begin: 10.101.10.1
+    loc_range_end: 10.101.10.250
+  pre_tasks:
+    - name: Ensure the interface is configured
+      ansible.builtin.copy:
+        dest: "/etc/network/interfaces.d/{{ loc_if }}"
+        content: |
+          auto {{ loc_if }}
+          iface {{ loc_if }} inet static
+              address {{ loc_address }}
+        owner: root
+        group: root
+        mode: '0644'
+
+  roles:
+    - ansible-role-shorewall
+    - ansible-role-dhcpd
